@@ -56,8 +56,9 @@ Mainly we need opencv python and Mediapipe itself that's all need.
 
 If can want to ask any thing about this project, ask me on social media, 
 
-You can support me, just starting this, repo, and you subscribe to my Youtube channel [AiPhile](https://www.youtube.com/c/aiphile), 
-thanks you so much.
+You can support me, by just star :star: this repo, and if  you can subscribe to my Youtube channel [AiPhile](https://www.youtube.com/c/aiphile), it will feel wonders :joy: for me....
+
+Thanks you so much.
 
 ## :green_heart: Join Me on Social Media :green_heart:
 
