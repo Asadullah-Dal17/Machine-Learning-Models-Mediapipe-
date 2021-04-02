@@ -13,7 +13,7 @@ if You need more details about that I am going to create complete video on each 
 
 - [ ] [**Hand Pos**](https://google.github.io/mediapipe/solutions/hands.html) 
   
-- [ ] [**Pos Estimation**](https://google.github.io/mediapipe/solutions/pose.html)
+- [x] [**Pos Estimation**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/Pos-Estimation)
   
 - [ ] [**Holistic Pos Estimation**](https://google.github.io/mediapipe/solutions/holistic.html)
  
