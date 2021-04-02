@@ -8,13 +8,21 @@ capID = 1
 frame_count = 0
 startTime = time.time()
 fonts = cv.FONT_HERSHEY_COMPLEX
+
+# colors BGR(BLUE GREEN RED) 
+BLUE 	= (255,0,0)
+GREEN 	= (0, 255, 0)
+RED		= (0, 0, 255)
+YELLOW 	=(0,255,255)
+MAGENTA = (255, 0, 255)
+
 # objects
 camera = cv.VideoCapture(capID)
 
 # Mdeda pipe objects 
 mpPose = mp.solutions.pose
 
-with mpPose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as Pose:
+with mpPose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
 	
 	while True:
 	# starting frame counter
@@ -23,10 +31,31 @@ with mpPose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as P
 		# read frame from the camera
 		ret, frame = camera.read()
 		if not ret:
-			print("if camera is loaded or not")
-			continue 
+			print("if camera is loaded")
+			break
 		# converting BGR to RGB frame 
-		RGB_Frame = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
+		RGB_frame = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
+		
+		# findig frame height and width  of frame 
+		height, width , channels = frame.shape # since frame is np array, shape attribute provide us height width, number channeles in image(depth)
+
+		frame.flags.writeable = False
+		
+		# detection the pos
+		resultsOut = pose.process(RGB_frame)
+
+		# check if pose is detect or not 
+		# print(resultsOut.pose_landmarks)
+		if resultsOut.pose_landmarks:
+			# finding landmarks coordinates and ID of each landmark
+			for ID, lMark in enumerate(resultsOut.pose_landmarks.landmark):
+				print(f"id {ID}   Values {lMark}")
+			
+				# converting normallied values in the pixels
+				Px, Py = int(lMark.x * width), int(lMark.y * height)
+
+				cv.putText(frame, f"{ID}", (Px, Py), fonts, 0.5, YELLOW, 1)
+				
 
 		# calculating the taken by total frame
 		seconds = time.time() - startTime
