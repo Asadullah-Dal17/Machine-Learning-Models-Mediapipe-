@@ -15,28 +15,16 @@ GREEN = (0, 255, 0)
 BLUE = (255, 0, 0)
 
 # create function 
-def drawLeftHand(image, mpOut):
+def drawLandmarks(image, landmark, colour=(0,255,0),radius=1):
     # option = [", "right_hand_landmarks"]
-    if mpOut.left_hand_landmarks:
         # print(mpOut.op)
-        for ID, marks in enumerate(mpOut.left_hand_landmarks.landmark):
-            # print(ID, "  ", marks)
-            height, width, _ = image.shape
-            pX, pY = int(width * marks.x), int(height * marks.y)
-            cv.circle(image, (pX, pY), 2, GREEN, -1)
+    for ID, marks in enumerate(landmark):
+        # print(ID, "  ", marks)
+        height, width, _ = image.shape
+        pX, pY = int(width * marks.x), int(height * marks.y)
+        cv.circle(image, (pX, pY), radius, colour, -1)
 
-            # cv.putText(image, f'{ID}', (pX, pY), fonts, 0.5, RED, 1)
-# create function 
-def drawRightHand(image, mpOut):
-    # option = [", "right_hand_landmarks"]
-    if mpOut.right_hand_landmarks:
-        # print(mpOut.op)
-        for ID, marks in enumerate(mpOut.right_hand_landmarks.landmark):
-            # print(ID, "  ", marks)
-            height, width, _ = image.shape
-            pX, pY = int(width * marks.x), int(height * marks.y)
-            cv.circle(image, (pX, pY), 2, RED, -1)
-
+        # cv.putText(image, f'{ID}', (pX, pY), fonts, 0.5, RED, 1)
 
 # objects 
 camera = cv.VideoCapture(cameraID)
@@ -51,6 +39,8 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
         ret, frame = camera.read()
         frameCounter += 1
 
+        mask = np.zeros((frame.shape), dtype=np.uint8)
+
         # converting frame frame BGR to RGB
         rgbframe = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
 
@@ -62,8 +52,17 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
         results = holistic.process(rgbframe)
         # print(results.pose_landmarks)
         valued = 'left_hand_landmarks'
-        drawLeftHand(frame, results)
-        drawRightHand(frame, results)
+        # drawLeftHand(frame, results)
+        # drawRightHand(frame, results)
+        if results.left_hand_landmarks:
+            # print("True")
+            drawLandmarks(mask, results.left_hand_landmarks.landmark)
+        if results.right_hand_landmarks:
+            # print("True")
+            drawLandmarks(mask, results.right_hand_landmarks.landmark, (255,0,255))
+
+        if results.pose_landmarks:
+            drawLandmarks(mask, results.pose_landmarks.landmark)
         # finding frame per seconds 
         endTime = time.time()
         second = endTime - startTime
@@ -73,7 +72,8 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
         cv.putText(frame, f'FPS : {int(fps)}', (50,30), fonts, 0.8, GREEN, 2)
 
         #show the frame on the screen
-        cv.imshow("frame", frame)
+        combined =np.hstack([frame,mask])
+        cv.imshow("frame", combined)
         
         # define the key to have a controll over the video, other operation
         key = cv.waitKey(1)
