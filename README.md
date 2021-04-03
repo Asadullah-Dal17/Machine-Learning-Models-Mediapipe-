@@ -9,15 +9,15 @@ I am just going show you these examples, mainly done in python. Try it yourself 
 if You need more details about that I am going to create complete video on each topics, I will encourage to  you join me on Youtube Channel [***AiPhile***](https://www.youtube.com/c/aiphile)
  
 
-- [ ] [**Face Mesh**](https://google.github.io/mediapipe/solutions/face_mesh.html)
+- [ ] [**Face Mesh**](https://google.github.io/mediapipe/solutions/face_mesh.html) [ Not Tried yet]
 
-- [ ] [**Hand Pos**](https://google.github.io/mediapipe/solutions/hands.html) 
+- [ ] [**Hand Pos**](https://google.github.io/mediapipe/solutions/hands.html)
   
 - [x] [**Pos Estimation**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/Pos-Estimation)
   
-- [ ] [**Holistic Pos Estimation**](https://google.github.io/mediapipe/solutions/holistic.html)
+- [x] [**Holistic Pos Estimation**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/Holistic-Pos)
  
-- [ ] [**Objectron**](https://google.github.io/mediapipe/solutions/objectron)
+- [ ] [**Objectron**](https://google.github.io/mediapipe/solutions/objectron )
 
 
 Different models available [**here**](https://google.github.io/mediapipe/solutions/models)
