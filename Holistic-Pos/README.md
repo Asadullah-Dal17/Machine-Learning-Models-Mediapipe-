@@ -6,7 +6,7 @@ Holistic Pos Estimation is combination of different pos estimation model, like h
 
 ## TO DO
 
-- [ ] face Mesh detection 
+- [ ] face Mesh detection (Not Required Right Know) 
 - [x] hand detection 
-- [ ] Full body pos estimation 
+- [x] Full body pos estimation 
 - [ ] Integration of with blender 3D model
