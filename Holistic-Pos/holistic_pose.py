@@ -24,6 +24,16 @@ def drawLandmarks(image, landmark, colour=(0,255,0),radius=1):
         pX, pY = int(width * marks.x), int(height * marks.y)
         cv.circle(image, (pX, pY), radius, colour, -1)
 
+        # print(results.right_hand_landmarks.landmark[0])
+        # n = len(landmark)
+        # for j in range(0, n):
+        #     print(j, "reversed", (j + 1) % n)
+        #     x1, y1 = int(landmark[j].x * width), int(landmark[j].y * height)
+        #     x2, y2 = int(landmark[(j + 1) % n].x *
+        #                  width), int(landmark[(j + 1) % n].y * height)
+            
+        #     cv.line(image, (x1, y1), (x2, y2),BLUE, 1)
+
         # cv.putText(image, f'{ID}', (pX, pY), fonts, 0.5, RED, 1)
 
 # objects 
@@ -38,7 +48,7 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
     while True:
         ret, frame = camera.read()
         frameCounter += 1
-
+        
         mask = np.zeros((frame.shape), dtype=np.uint8)
 
         # converting frame frame BGR to RGB
@@ -51,7 +61,6 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
         
         results = holistic.process(rgbframe)
         # print(results.pose_landmarks)
-        valued = 'left_hand_landmarks'
         # drawLeftHand(frame, results)
         # drawRightHand(frame, results)
         if results.left_hand_landmarks:
@@ -59,8 +68,7 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
             drawLandmarks(mask, results.left_hand_landmarks.landmark)
         if results.right_hand_landmarks:
             # print("True")
-            drawLandmarks(mask, results.right_hand_landmarks.landmark, (255,0,255))
-
+            drawLandmarks(mask, results.right_hand_landmarks.landmark, (255, 0, 255))
         if results.pose_landmarks:
             drawLandmarks(mask, results.pose_landmarks.landmark)
         # finding frame per seconds 
