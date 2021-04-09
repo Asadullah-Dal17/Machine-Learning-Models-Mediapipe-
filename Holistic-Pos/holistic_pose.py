@@ -15,47 +15,54 @@ GREEN = (0, 255, 0)
 BLUE = (255, 0, 0)
 
 # create function 
-def drawLandmarks(image, landmark, colour=(0,255,0),radius=2):
+def getHandPoints(image, landmark, colour=(0,255,0),radius=2):
     # option = [", "right_hand_landmarks"]
         # print(mpOut.op)
     linesPoints = []
-    dicPoints = {}
+    # dicPoints = {}
     for ID, marks in enumerate(landmark):
         # print(ID, "  ", marks)
+        
         height, width, _ = image.shape
+
         pX, pY = int(width * marks.x), int(height * marks.y)
+        
         cv.circle(image, (pX, pY), radius, colour, -1)
-        linesPoints.append([pX, pY])
-        dicPoints.update({ID:[pX, pY]})
 
-
-        # print(results.right_hand_landmarks.landmark[0])
-        # n = len(landmark)
-        # for j in range(0, n):
-        #     print(j, "reversed", (j + 1) % n)
-        #     x1, y1 = int(landmark[j].x * width), int(landmark[j].y * height)
-        #     x2, y2 = int(landmark[(j + 1) % n].x *
-        #                  width), int(landmark[(j + 1) % n].y * height)
-            
-        #     cv.line(image, (x1, y1), (x2, y2),BLUE, 1)
-
+        # updating hand points to the list 
+        linesPoints.append((pX, pY))
+        # dicPoints.update({ID: [pX, pY]})
+        
         cv.putText(image, f'{ID}', (pX, pY), fonts, 0.3, RED, 1)
     # print(linesPoints)
     # print(tuple(linesPoints[0:4]))
     # cv.circle(image, tuple(linesPoints[0]), 6, (0, 255,255), 3)
 
     # print(dicPoints )
-    newPoints = linesPoints[1:5]
+    thumb = linesPoints[1:5]
+    indexFinger = linesPoints[5:9]
+    middleFinger = linesPoints[9:13]
+    ringFinger = linesPoints[13:17]
+    pinkyFinger = linesPoints[17:21]
     # print(newPoints)
     # cv.circle(image, tuple(newPoints[0]), 6, (0, 255, 255), 3)
     # cv.circle(image, tuple(newPoints[1]), 6, (255, 255, 255), 3)
     # cv.circle(image, tuple(newPoints[2]), 6, (0, 25,255), 3)
-    pts = np.array([newPoints], np.int32)
-    pts = pts.reshape((-1, 1, 2))
-    # print(pts)
-    print()
-    img = cv.polylines(image,[pts],False,(0,255,255))
-
+    # pts = np.array([index], np.int32)
+    # pts = pts.reshape((-1, 1, 2))
+    # # print(pts)
+    # print()
+    # img = cv.polylines(image,[pts],False,(0,255,255),2)
+    return thumb, indexFinger, middleFinger, ringFinger, pinkyFinger
+def LinesFunc(image,listOfTuples, color, thickness):
+        listOfList = list(map(list, listOfTuples))
+        print(listOfList)
+        pts = np.array([listOfList], np.int32)
+        # pts = np.array([index], np.int32)
+        pts = pts.reshape((-1, 1, 2))
+        print(pts)
+        # print()
+        img = cv.polylines(image,[pts],False,color,3)
 # objects 
 camera = cv.VideoCapture(cameraID)
 
@@ -86,7 +93,7 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
         # getting the width, height and channels,
         height, width, channeles = rgbframe.shape
         
-        rgbframe.flags.writeable = False
+        rgbframe.flags.writeable = True
         
         results = holistic.process(rgbframe)
         # print(results.pose_landmarks)
@@ -94,20 +101,22 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
         # drawRightHand(frame, results)
         if results.left_hand_landmarks:
             # print("True")
-            drawLandmarks(mask, results.left_hand_landmarks.landmark)
+            thumbLeft, indexLeft, middleLeft, ringLeft, pinkyLeft = getHandPoints(mask, results.left_hand_landmarks.landmark)
+            # print(thumbLeft)
+            LinesFunc(mask, thumbLeft, GREEN, 2)
+
         if results.right_hand_landmarks:
             # print("True")
-            drawLandmarks(mask, results.right_hand_landmarks.landmark, (255, 0, 255))
+            getHandPoints(mask, results.right_hand_landmarks.landmark, (255, 0, 255))
         # if results.pose_landmarks:
         #     drawLandmarks(mask, results.pose_landmarks.landmark)
-        # # finding frame per seconds 
+        #  finding frame per seconds 
         endTime = time.time()
         second = endTime - startTime
         
         fps = frameCounter / second
         # showing the fps on the screen
         cv.putText(frame, f'FPS : {int(fps)}', (50,30), fonts, 0.8, GREEN, 2)
-
 
         #show the frame on the screen
         combined = np.hstack([frame, mask])
