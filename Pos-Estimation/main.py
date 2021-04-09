@@ -47,15 +47,19 @@ with mpPose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as p
 		# check if pose is detect or not 
 		# print(resultsOut.pose_landmarks)
 		if resultsOut.pose_landmarks:
+			linePoints =[]
 			# finding landmarks coordinates and ID of each landmark
 			for ID, lMark in enumerate(resultsOut.pose_landmarks.landmark):
+				# linePoints.append
 				print(f"id {ID}   Values {lMark}")
 			
 				# converting normallied values in the pixels
 				Px, Py = int(lMark.x * width), int(lMark.y * height)
+				linePoints.append((Px, Py))
+
 
 				cv.putText(frame, f"{ID}", (Px, Py), fonts, 0.5, YELLOW, 1)
-				
+			print(linePoints)
 
 		# calculating the taken by total frame
 		seconds = time.time() - startTime
