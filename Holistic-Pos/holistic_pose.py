@@ -15,17 +15,18 @@ GREEN = (0, 255, 0)
 BLUE = (255, 0, 0)
 
 # create function 
-def drawLandmarks(image, landmark, colour=(0,255,0),radius=8):
+def drawLandmarks(image, landmark, colour=(0,255,0),radius=2):
     # option = [", "right_hand_landmarks"]
         # print(mpOut.op)
-    linesPoints =[]
+    linesPoints = []
+    dicPoints = {}
     for ID, marks in enumerate(landmark):
         # print(ID, "  ", marks)
         height, width, _ = image.shape
         pX, pY = int(width * marks.x), int(height * marks.y)
         cv.circle(image, (pX, pY), radius, colour, -1)
         linesPoints.append([pX, pY])
-
+        dicPoints.update({ID:[pX, pY]})
 
 
         # print(results.right_hand_landmarks.landmark[0])
@@ -40,11 +41,20 @@ def drawLandmarks(image, landmark, colour=(0,255,0),radius=8):
 
         cv.putText(image, f'{ID}', (pX, pY), fonts, 0.3, RED, 1)
     # print(linesPoints)
-    # print(linesPoints[0:3])
-    pts = np.array([linesPoints][0:4], np.int32)
+    # print(tuple(linesPoints[0:4]))
+    # cv.circle(image, tuple(linesPoints[0]), 6, (0, 255,255), 3)
+
+    # print(dicPoints )
+    newPoints = linesPoints[1:5]
+    # print(newPoints)
+    # cv.circle(image, tuple(newPoints[0]), 6, (0, 255, 255), 3)
+    # cv.circle(image, tuple(newPoints[1]), 6, (255, 255, 255), 3)
+    # cv.circle(image, tuple(newPoints[2]), 6, (0, 25,255), 3)
+    pts = np.array([newPoints], np.int32)
     pts = pts.reshape((-1, 1, 2))
     # print(pts)
-    # img = cv.polylines(image,[pts],False,(0,255,255))
+    print()
+    img = cv.polylines(image,[pts],False,(0,255,255))
 
 # objects 
 camera = cv.VideoCapture(cameraID)
@@ -56,12 +66,14 @@ frameWidth = int(camera.get(3))
 frameHeight= int(camera.get(4))
 
 # video recording settings 
-# vidRecoder = cv.VideoWriter("OutResult.mp4", cv.VideoWriter_fourcc(*'XVID'), 10,(480, 1280) )
-fourcc = cv.VideoWriter_fourcc(* 'XVID')
-vidRecoder = cv.VideoWriter('output.mp4', fourcc, 10.0, (1280, 480))
+
+# fourcc = cv.VideoWriter_fourcc(* 'XVID')
+# vidRecoder = cv.VideoWriter('output.mp4', fourcc, 10.0, (1280, 480))
+
 # loading in the Models from mediapipe
 with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
-    
+
+    # going through each frame comming from camera     
     while True:
         ret, frame = camera.read()
         frameCounter += 1
@@ -101,6 +113,7 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
         combined = np.hstack([frame, mask])
         # print(combined.shape)
         cv.imshow("frame", combined)
+        # Recode video 
         # vidRecoder.write(combined)
         # define the key to have a controll over the video, other operation
         key = cv.waitKey(1)
@@ -110,7 +123,7 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
 
             break
 
-    vidRecoder.release()
+    # vidRecoder.release()
     camera.release()
 cv.destroyAllWindows()
 # closing all the windows 
