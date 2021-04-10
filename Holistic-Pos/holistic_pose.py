@@ -17,7 +17,8 @@ YELLOW = (0, 255, 255)
 MAGENTA = (255, 0, 255)
 WHITE = (255, 255, 255)
 ORANGE = ( 255, 125, 0)
-# create function 
+# create function
+# Getting hand points (Lnadmarks ) 
 def getHandPoints(image, landmark, colour=(0,255,0),radius=2):
     # option = [", "right_hand_landmarks"]
         # print(mpOut.op)
@@ -58,7 +59,8 @@ def getHandPoints(image, landmark, colour=(0,255,0),radius=2):
     # print()
     # img = cv.polylines(image,[pts],False,(0,255,255),2)
     return thumb, indexFinger, middleFinger, ringFinger, pinkyFinger
-def LinesFunc(image,listOfTuples, color, thickness,DrawCircle=False ,radius=5,circleColor=(255,255,255), CType=2 ):
+# drawing the lines and circles on the hand 
+def handDraw(image,listOfTuples, color, thickness,DrawCircle=False ,radius=5,circleColor=(255,255,255), CType=2 ):
         listOfList = list(map(list, listOfTuples))
         if DrawCircle == True:
             
@@ -72,6 +74,7 @@ def LinesFunc(image,listOfTuples, color, thickness,DrawCircle=False ,radius=5,ci
         # print(pts)
         # print()
         img = cv.polylines(image,[pts],False,color,3)
+
 # objects 
 camera = cv.VideoCapture(cameraID)
 
@@ -110,13 +113,15 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
         # drawRightHand(frame, results)
         if results.left_hand_landmarks:
             # print("True")
+            # getting the hand points individual part of hand
             thumbLeft, indexLeft, middleLeft, ringLeft, pinkyLeft = getHandPoints(mask, results.left_hand_landmarks.landmark)
             # print(thumbLeft)
-            LinesFunc(mask, thumbLeft, GREEN, 2)
-            LinesFunc(mask, indexLeft, RED, 2)
-            LinesFunc(mask, middleLeft, BLUE,2, True, 4, (255,0, 244))
-            LinesFunc(mask, ringLeft, YELLOW, 2,True, 4, (0,255,0) )
-            LinesFunc(mask, pinkyLeft, ORANGE, 2)
+            # Calling hand point draw function 
+            handDraw(mask, thumbLeft, GREEN, 2)
+            handDraw(mask, indexLeft, RED, 2)
+            handDraw(mask, middleLeft, BLUE,2, True, 4, (255,0, 244))
+            handDraw(mask, ringLeft, YELLOW, 2,True, 4, (0,255,0) )
+            handDraw(mask, pinkyLeft, ORANGE, 2)
             
 
         if results.right_hand_landmarks:
