@@ -2,6 +2,7 @@
 import mediapipe as mp
 import cv2 as cv
 import numpy as np
+import Lib
 import time 
 # Variable
 cameraID = 1
@@ -82,7 +83,8 @@ camera = cv.VideoCapture(cameraID)
 mpHolistic = mp.solutions.holistic
 
 frameWidth = int(camera.get(3))
-frameHeight= int(camera.get(4))
+frameHeight = int(camera.get(4))
+
 
 # video recording settings 
 
@@ -105,7 +107,7 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
         # getting the width, height and channels,
         height, width, channeles = rgbframe.shape
         
-        rgbframe.flags.writeable = True
+        rgbframe.flags.writeable = False
         
         results = holistic.process(rgbframe)
         # print(results.pose_landmarks)
@@ -117,18 +119,23 @@ with mpHolistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0
             thumbLeft, indexLeft, middleLeft, ringLeft, pinkyLeft = getHandPoints(mask, results.left_hand_landmarks.landmark)
             # print(thumbLeft)
             # Calling hand point draw function 
-            handDraw(mask, thumbLeft, GREEN, 2)
-            handDraw(mask, indexLeft, RED, 2)
+            handDraw(mask, thumbLeft, GREEN, 2, True)
+            handDraw(mask, indexLeft, RED, 2, True)
             handDraw(mask, middleLeft, BLUE,2, True, 4, (255,0, 244))
             handDraw(mask, ringLeft, YELLOW, 2,True, 4, (0,255,0) )
-            handDraw(mask, pinkyLeft, ORANGE, 2)
+            handDraw(mask, pinkyLeft, ORANGE, 2, True)
             
 
         if results.right_hand_landmarks:
             # print("True")
-            getHandPoints(mask, results.right_hand_landmarks.landmark, (255, 0, 255))
-        # if results.pose_landmarks:
-        #     drawLandmarks(mask, results.pose_landmarks.landmark)
+            thumbRight, indexRight, middleRight, ringRight, pinkyRight = getHandPoints(mask, results.right_hand_landmarks.landmark)
+            handDraw(mask, thumbRight, GREEN, 2, True)
+            handDraw(mask, indexRight, RED, 2, True)
+            handDraw(mask, middleRight, BLUE, 2, True)
+            handDraw(mask, ringRight, YELLOW, 2, True)
+            handDraw(mask, pinkyRight, ORANGE, 2, True)
+        if results.pose_landmarks:
+            Lib.PoseLandmarks(frame, results.pose_landmarks.landmark)
         #  finding frame per seconds 
         endTime = time.time()
         second = endTime - startTime
