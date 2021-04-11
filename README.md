@@ -11,11 +11,11 @@ if You need more details about that I am going to create complete video on each 
 
 - [ ] [**Face Mesh**](https://google.github.io/mediapipe/solutions/face_mesh.html) [ Not Tried yet]
 
-- [ ] [**Hand Pos**](https://google.github.io/mediapipe/solutions/hands.html)
+- [x] [**Hand Pos**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/handPos) [working on]
   
-- [x] [**Pos Estimation**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/Pos-Estimation)
+- [x] [**Pos Estimation**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/Pos-Estimation) [Done]
   
-- [x] [**Holistic Pos Estimation**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/Holistic-Pos)
+- [x] [**Holistic Pos Estimation**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/Holistic-Pos) [Done]
  
 - [ ] [**Objectron**](https://google.github.io/mediapipe/solutions/objectron )
 
