@@ -1,4 +1,4 @@
-# Machine-Learning-Models-Mediapipe
+#  :pushpin:Machine-Learning-Models-Mediapipe :camera:
 
 This Repository will show how to use the machine learning models from **Mediapipe** to any use case, explain every thing you need to know about [**Mediapipe**](https://google.github.io/mediapipe/) we will be using opencv-python
 
@@ -13,9 +13,9 @@ if You need more details about that I am going to create complete video on each 
 
 - [x] [**Hand Pos**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/handPos) [working on]
   
-- [x] [**Pos Estimation**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/Pos-Estimation) [Done]
+- [x] [**Pos Estimation**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/Pos-Estimation) :white_check_mark:
   
-- [x] [**Holistic Pos Estimation**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/Holistic-Pos) [Done]
+- [x] [**Holistic Pos Estimation**](https://github.com/Asadullah-Dal17/Machine-Learning-Models-Mediapipe-/tree/master/Holistic-Pos) :white_check_mark:
  
 - [ ] [**Objectron**](https://google.github.io/mediapipe/solutions/objectron )
 
