@@ -35,7 +35,9 @@ class handDetector():
             for handMarks in results.multi_hand_landmarks:
                 # print(handMarks)
                 for IDs, HandPoints in enumerate(handMarks.landmark):
-                    print(f"{IDs}  {HandPoints}")
+                    # cv.circle(image, (handMarks.landmark.x, handMarks.landmark.y), 2, (0,255,0), 2)
+                    
+                    print(f"{IDs}  {HandPoints.x}")
             # print("land marks are detected")
         return image
 

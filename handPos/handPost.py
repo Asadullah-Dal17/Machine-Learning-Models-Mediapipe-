@@ -20,7 +20,7 @@ ORANGE = (0,69,255)
 # mp_drawing = mp.solutions.drawing_utils
 # mp_hands = mp.solutions.hands
 # initiations of camera  object
-camera =cv.VideoCapture(1)
+camera =cv.VideoCapture(0)
 # camera.set(cv.CAP_PROP_FRAME_WIDTH, 320*3)
 # camera.set(cv.CAP_PROP_FRAME_HEIGHT,240*3)
 detector =Lib.handDetector()
