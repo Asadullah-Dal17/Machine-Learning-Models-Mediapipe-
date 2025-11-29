@@ -73,38 +73,28 @@ Distributed under MIT License. See [LICENSE](https://github.com/Asadullah-Dal17/
 ## Contact
 If you found this helpful, please star it. :star:
 
-You can watch my tutorial on Computer Vision Topics on my channel <a href="https://www.youtube.com/c/aiphile">  <img alt="AiPhile Youtube" src="https://user-images.githubusercontent.com/66181793/131223988-882d53a0-4882-468f-9bd7-46b46466baae.png"  width="20"> </a>
+## 📫 Let's Connect
 
+<div align=\"center\">
 
-If you have any questions or need help in CV Project, feel free to DM on Instagram  <a href="https://www.instagram.com/aiphile17/">  <img alt="Instagram" src="https://user-images.githubusercontent.com/66181793/131223931-32d84c10-88b4-4cd6-8eb8-89f06c3b5b51.png"  width="20"> </a>
+[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@asadullah-dal)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/aiphile17)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/aiphile)
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/ai_phile)
+[![Medium](https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@aiphile)
+[![Portfolio](https://img.shields.io/badge/Portfolio-00C7B7?style=for-the-badge&logo=About.me&logoColor=white)](https://asadullah-dal17.github.io/asadullahdal.github.io)
 
-You can reach out to me here: 
-   <div id="badges">
+### 💼 Freelance Platforms
 
- <!-- Youtube Badge -->
-  <a href="https://www.youtube.com/c/aiphile">
-    <img src="https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white" alt="Youtube Badge"/>
-  </a>
+[![Fiverr](https://img.shields.io/badge/Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/asadullahdal482)
+[![Kwork](https://img.shields.io/badge/Kwork-Freelance-black?style=for-the-badge&logo=kwork&logoColor=white)](https://kwork.com/user/asadullah92)
 
-<!-- Instagram Badge  -->
-  <a href="https://www.instagram.com/aiphile17">
-    <img src="https://img.shields.io/badge/Instagram-purple?style=for-the-badge&logo=Instagram&logoColor=white" alt="Medium Badge"/>
-
-<!-- Medium Badge  -->
-  <a href="https://medium.com/@aiphile">
-    <img src="https://img.shields.io/badge/Medium-black?style=for-the-badge&logo=Medium&logoColor=white" alt="Medium Badge"/>
-  </a>
-
-<!-- LinkedIn Badge -->
-  <a href="https://www.linkedin.com/company/aiphile">
-    <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
-  </a>
-  <!-- Face book badge  -->
-<a href="https://asadullah.super.site">
-    <img src="https://img.shields.io/badge/My%20Profile-black?style=for-the-badge&logo=Profile&logoColor=Green" alt="Facebook Badge"/>
-  </a> 
-  <!-- Twitter Badge  -->
-  <a href="https://twitter.com/ai_phile">
-    <img src="https://img.shields.io/badge/Twitter-blue?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter Badge"/>
-  </a>
 </div>
+
+## 💬 Questions or Need Help?
+
+If you have any questions or need help with the project, feel free to DM me on [Instagram](https://www.instagram.com/aiphile17)!
+
+<a href="https://www.instagram.com/aiphile17">
+    <img src="https://img.shields.io/badge/Instagram-purple?style=for-the-badge&logo=Instagram&logoColor=white" height=20  alt="Insta Badge"/>
+  </a>
